@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أكبر موقع عربي للوصفات الشهية - وصفات سهلة وسريعة">
+    <title>طبقتي | وصفات منزلية بالخطوات المصورة</title>
+    <style>
+        :root {
+            --primary: #e74c3c;
+            --secondary: #f39c12;
+            --light: #f9f9f9;
+            --dark: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tahoma', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .search-bar {
+            display: flex;
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .search-bar button {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&w=1200') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .categories {
+            padding: 40px 20px;
+            background: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .category-card h3 {
+            padding: 15px;
+            color: var(--dark);
+        }
+        
+        .featured-recipes {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .recipe-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .recipe-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .recipe-content {
+            padding: 20px;
+        }
+        
+        .recipe-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+        
+        .ad-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: var(--light);
+            text-align: center;
+            border-radius: 8px;
+            max-width: 1200px;
+        }
+        
+        .ad-placeholder {
+            background: #e0e0e0;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4357776910889937"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>طبقتي</span>
+                <i>🍳</i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">الوصفات</a></li>
+                    <li><a href="#">أصناف الطعام</a></li>
+                    <li><a href="#">وصفات صحية</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- شريط البحث -->
+    <div class="search-bar">
+        <input type="text" placeholder="ابحث عن وصفة...">
+        <button>بحث</button>
+    </div>
+
+    <!-- قسم البطل -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>اكتشف عالمًا من النكهات مع وصفاتنا الشهية</h1>
+            <p>أكثر من 1000 وصفة منزلية مجربة مع خطوات مصورة</p>
+        </div>
+    </section>
+
+    <!-- الأقسام الرئيسية -->
+    <section class="categories">
+        <h2 class="section-title">تصفح حسب التصنيف</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600" alt="وصفات صحية">
+                <h3>وصفات صحية</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1484980972926-edee96e0960d?auto=format&fit=crop&w=600" alt="أطباق رئيسية">
+                <h3>أطباق رئيسية</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600" alt="حلويات">
+                <h3>حلويات</h3>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=600" alt="مشروبات">
+                <h3>مشروبات</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- مساحة إعلانية - أعلى الصفحة -->
+    <div class="ad-container">
+        <div class="ad-placeholder">مساحة إعلانية (728 × 90)</div>
+    </div>
+
+    <!-- وصفات مميزة -->
+    <section class="featured-recipes">
+        <h2 class="section-title">وصفات مميزة</h2>
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600" alt="بيتزا منزلية">
+                <div class="recipe-content">
+                    <h3>بيتزا منزلية بالجبنة</h3>
+                    <p>وصفة بيتزا إيطالية أصيلة بخطوات بسيطة ومكونات متوفرة في كل منزل</p>
+                    <div class="recipe-meta">
+                        <span>⏱️ 40 دقيقة</span>
+                        <span>⭐ 4.8 (120 تقييم)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600" alt="برجر لحم">
+                <div class="recipe-content">
+                    <h3>برجر اللحم المشوي</h3>
+                    <p>برجر لحم بقري مشوي مع صوص خاص وخضروات طازجة</p>
+                    <div class="recipe-meta">
+                        <span>⏱️ 30 دقيقة</span>
+                        <span>⭐ 4.9 (95 تقييم)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600" alt="تشيز كيك">
+                <div class="recipe-content">
+                    <h3>تشيز كيك التوت</h3>
+                    <p>وصفة تشيز كيك كريمية مع توت طازج وقاعدة بسكويت مقرمشة</p>
+                    <div class="recipe-meta">
+                        <span>⏱️ 1 ساعة + تبريد</span>
+                        <span>⭐ 5.0 (150 تقييم)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مساحة إعلانية - وسط الصفحة -->
+    <div class="ad-container">
+        <div class="ad-placeholder"> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4357776910889937"
+     crossorigin="anonymous"></script> </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>عن طبقتي</h3>
+                <p>موقع متخصص في تقديم وصفات طبخ منزلية بخطوات سهلة ومقادير دقيقة، نهدف لجعل الطبخ متعة في متناول الجميع.</p>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">وصفات جديدة</a></li>
+                    <li><a href="#">أكثر الوصفات مشاهدة</a></li>
+                    <li><a href="#">وصفات الرجيم</a></li>
+                    <li><a href="#">وصفات الأطفال</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>التصنيفات</h3>
+                <ul>
+                    <li><a href="#">أطباق عربية</a></li>
+                    <li><a href="#">مطبخ آسيوي</a></li>
+                    <li><a href="#">مطبخ إيطالي</a></li>
+                    <li><a href="#">مخبوزات</a></li>
+                    <li><a href="#">سلطات</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>اتصل بنا</h3>
+                <ul>
+                    <li>البريد: info@tapty.com</li>
+                    <li>تويتر: @tapty_recipes</li>
+                    <li>انستقرام: @tapty_recipes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 موقع طبقتي. جميع الحقوق محفوظة. | سياسة الخصوصية | شروط الاستخدام</p>
+        </div>
+    </footer>
+
+    <!-- مساحة إعلانية - أسفل الصفحة -->
+    <div class="ad-container">
+        <div class="ad-placeholder"> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4357776910889937"
+     crossorigin="anonymous"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4357776910889937"
+     crossorigin="anonymous"></script></div>
+    </div>
+
+    <script>
+        // ديناميكية البحث
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value;
+            if(searchTerm.trim() !== '') {
+                alert(`سيتم البحث عن: "${searchTerm}" - هذه ميزة تجريبية`);
+                // في التطبيق الحقيقي: إرسال طلب AJAX أو تغيير الصفحة
+            }
+        });
+
+        // تتبع النقرات على الوصفات
+        document.querySelectorAll('.recipe-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const recipeName = this.querySelector('h3').textContent;
+                alert(`سيتم تحويلك لصفحة وصفة: "${recipeName}"`);
+                // في التطبيق الحقيقي: نقل المستخدم لصفحة الوصفة
+            });
+        });
+    </script>
+</body>
+</html>
